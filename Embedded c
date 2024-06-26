@@ -1,4 +1,4 @@
-#include<reg51.h>
+#include <reg51.h>
 #define lcd_data P2
   sbit l=P3^0;
 sbit lcd_rs = P*2^0;
@@ -32,31 +32,31 @@ lcd_data=value&(0xf0); //send msb 4 bits
 
 lcd data=((value<<4) & (0xf0));  //send lsb 4 bits
 lcd rs=0; //select command register the lcd to execute command
-1cd en-1; //enable the lcd to excute command
+lcd en-1; //enable the lcd to excute command
 	delay (3);
 	lcd_en=0;
 }
 void lcd_init(void)
 { 
-1cdcmd(0x02);
-1cdcmd(0x02);
+lcdcmd(0x02);
+lcdcmd(0x02);
 lcdcmd(0x28);   //intialise the lcd in 4 bit mode*/
 lcdcmd(0x28);   //intialise the lcd in 4 bit mode*/
-1cdcmd(0x0e);   //cursor blinking
-1cdcmd(0x06);   //move the cursor to right side
-1cdcmd(0x01);   //clear the lcd
+lcdcmd(0x0e);   //cursor blinking
+lcdcmd(0x06);   //move the cursor to right side
+lcdcmd(0x01);   //clear the lcd
 }
 void lcddat (unsigned char value)
 {
 
 lcd_data-value&(0xf0);          //send msb 4 bits
 lcd_data=((value<<4) & (0xf0)); //send lsb 4 bits
-lcd_rs=1;                    //select data register
-1cd 1cd en-1;                //enable the lcd to execute data
+lcd_rs=1;                       //select data register
+lcd lcd en-1;                   //enable the lcd to execute data
 	delay (3);
 	lcd_en=0;
 
-delay(3); )
+delay(3); }
 
 void msgdisplay(unsigned char b[]) // send string to led
 {
@@ -83,14 +83,14 @@ rd=1;
  if(v>=0 && v <= 25 )
 {
 m1=1;
-1cdcmd(0xc0);
+lcdcmd(0xc0);
 msgdisplay("Fan OFF");
 delay (200);
 }
 else if (v>25 && v <= 200)
 {
 m1=0;
-1cdcmd(0xc0);
+lcdcmd(0xc0);
 msgdisplay("Fan on");
 delay(400);
 }
@@ -109,7 +109,7 @@ else if(ldr== 1)
 unsigned int i,j,k,l;
 i=v/100;
 i=i|0x30;
-1cdcmd(0x80);
+lcdcmd(0x80);
 lcddat(i);
 j=v%100;
 k=j/10;
